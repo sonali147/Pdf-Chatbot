@@ -1,2 +1,6 @@
 .cache
 .chroma
+
+.dockerignore
+.gitignore
+Dockerfile
