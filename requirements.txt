@@ -4,4 +4,4 @@ chromadb
 pypdf
 tiktoken
 panel
-# notebook
+notebook
