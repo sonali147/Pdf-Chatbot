@@ -1,3 +1,6 @@
 .cache
 .chroma
 .env
+.DS_Store
+*.pyc
+conda-env.yml
