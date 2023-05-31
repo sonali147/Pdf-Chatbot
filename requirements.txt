@@ -5,3 +5,4 @@ pypdf
 tiktoken
 panel
 notebook
+docx2txt
