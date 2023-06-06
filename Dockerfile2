@@ -1,0 +1,32 @@
+FROM python:3.10
+WORKDIR /code
+COPY ./requirements.txt /code/requirements.txt
+RUN python3 -m pip install --no-cache-dir --upgrade pip
+RUN python3 -m pip install --no-cache-dir --upgrade -r /code/requirements.txt
+COPY . .
+
+# General
+RUN apt-get update \
+    && apt-get install -y build-essential cmake git wget unzip yasm pkg-config software-properties-common python3-software-properties \
+    libswscale-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libavformat-dev libpq-dev libgl1-mesa-glx \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m pip install pillow
+
+# lib for tesseract
+RUN apt-get update && apt-get install -y g++ autoconf automake libtool \
+    autoconf-archive zlib1g-dev libicu-dev libpango1.0-dev libcairo2-dev
+
+# install tesseract
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libtesseract-dev libleptonica-dev tesseract-ocr tesseract-ocr-all
+
+# install poppler
+RUN apt-get update && apt-get install -y poppler-utils
+
+RUN mkdir .cache
+RUN chmod 777 .cache
+RUN mkdir .chroma
+RUN chmod 777 .chroma
+
+CMD ["panel", "serve", "/code/LangChain_QA_Panel_App.ipynb", "--address", "0.0.0.0", "--port", "7777"]

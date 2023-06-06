@@ -6,3 +6,5 @@ tiktoken
 panel
 notebook
 docx2txt
+pdf2image
+pytesseract
