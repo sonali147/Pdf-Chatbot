@@ -8,3 +8,4 @@ notebook
 docx2txt
 pdf2image
 pytesseract
+PyMuPDF
